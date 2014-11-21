@@ -23,11 +23,15 @@ module Name
     end
 
     post '/'  do
-      params = { :args => "BUZZ" }
-      puts "https://api.spark.io/v1/devices/#{ENV['DEVICE']}/buzzIn?access_token=#{ENV['ACCESS_TOKEN']}"
-      response = HTTParty.post("https://api.spark.io/v1/devices/#{ENV['DEVICE']}/buzzIn?access_token=#{ENV['ACCESS_TOKEN']}", body: params  )
-      puts response.body, response.code, response.message, response.headers.inspect
-      erb :index
+      if params["pw"] == "laradanny"
+        params = { :args => "BUZZ" }
+        puts "https://api.spark.io/v1/devices/#{ENV['DEVICE']}/buzzIn?access_token=#{ENV['ACCESS_TOKEN']}"
+        response = HTTParty.post("https://api.spark.io/v1/devices/#{ENV['DEVICE']}/buzzIn?access_token=#{ENV['ACCESS_TOKEN']}", body: params  )
+        puts response.body, response.code, response.message, response.headers.inspect
+        erb :index
+      else
+        "Wrong Access Code!"
+      end
     end
 
 
