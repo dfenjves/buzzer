@@ -23,7 +23,7 @@ module Name
     end
 
     post '/'  do
-      if params["pw"] == "laradanny"
+      if params["pw"] == ENV['CODE']
         params = { :args => "BUZZ" }
         puts "https://api.spark.io/v1/devices/#{ENV['DEVICE']}/buzzIn?access_token=#{ENV['ACCESS_TOKEN']}"
         response = HTTParty.post("https://api.spark.io/v1/devices/#{ENV['DEVICE']}/buzzIn?access_token=#{ENV['ACCESS_TOKEN']}", body: params  )
