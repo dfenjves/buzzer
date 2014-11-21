@@ -4,6 +4,7 @@ Bundler.require
 Dir.glob('./lib/*.rb') do |model|
   require model
 end
+require './env' if File.exists?('env.rb')
 
 module Name
   class App < Sinatra::Application
@@ -23,7 +24,8 @@ module Name
 
     post '/'  do
       params = { :args => "BUZZ" }
-      response = HTTParty.post("https://api.spark.io/v1/devices/#{ENV[DEVICE]}/buzzIn?access_token=#{ENV[ACESS_TOKEN]}", body: params  )
+      puts "https://api.spark.io/v1/devices/#{ENV['DEVICE']}/buzzIn?access_token=#{ENV['ACCESS_TOKEN']}"
+      response = HTTParty.post("https://api.spark.io/v1/devices/#{ENV['DEVICE']}/buzzIn?access_token=#{ENV['ACCESS_TOKEN']}", body: params  )
       puts response.body, response.code, response.message, response.headers.inspect
       erb :index
     end
