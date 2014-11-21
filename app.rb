@@ -22,8 +22,12 @@ module Name
     end
 
     post '/'  do
-
+      params = { :args => "BUZZ" }
+      response = HTTParty.post("https://api.spark.io/v1/devices/#{ENV[DEVICE]}/buzzIn?access_token=#{ENV[ACESS_TOKEN]}", body: params  )
+      puts response.body, response.code, response.message, response.headers.inspect
+      erb :index
     end
+
 
     #helpers
     helpers do
