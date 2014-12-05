@@ -3,7 +3,7 @@ source "https://rubygems.org"
 gem "sinatra"
 gem "rake"
 gem "httparty"
-gem "nokogiri"
+gem "twilio-ruby"
 
 group :development do
   gem "shotgun"
