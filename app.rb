@@ -30,7 +30,7 @@ module Name
         puts response.body, response.code, response.message, response.headers.inspect
         erb :index
       else
-        "Wrong Access Code!"
+        erb :error
       end
     end
 
